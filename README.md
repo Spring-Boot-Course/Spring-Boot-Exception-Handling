@@ -92,6 +92,12 @@ public class TestAdvice {
 }
 ``` 
 
+## 커스텀 에러 페이지
+
+* src/main/resources/static/template/error
+* 404.html
+* 5xx.html
+
 ### 참조
 
 http://springboot.tistory.com/25#sample-application

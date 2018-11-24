@@ -13,9 +13,8 @@ import org.springframework.web.context.request.WebRequest;
 public class TestAdvice {
 
     @ExceptionHandler({TestException.class})
-    @ResponseStatus(value = HttpStatus.CONFLICT, reason = "Test Exception Occurred !")
-    @ResponseBody
-    protected ErrorMessage handleConflict(RuntimeException e, WebRequest request){
+//    @ResponseStatus(value = HttpStatus.CONFLICT, reason = "Test Exception Occurred !")
+    protected @ResponseBody ErrorMessage handleConflict(RuntimeException e, WebRequest request){
         ErrorMessage errorMessage = new ErrorMessage();
         errorMessage.setStatus(HttpStatus.CONFLICT.toString());
         errorMessage.setMessage(e.toString());
