@@ -70,3 +70,30 @@ public class OrderNotFoundException extends RuntimeException {
         throw new Exception(param);
     }
 ```
+
+## 전역 예외 처리
+
+### @ControllerAdvice
+@ControllerAdvice로 등록된 클래스에서 @Controller, @RestController로 선언된 클래스들에서 발생한 예외를 감지한다.
+
+```java
+@ControllerAdvice
+public class TestAdvice {
+
+    @ExceptionHandler(value = { TestException.class })
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseBody
+    protected ErrorMessage handleConflict(RuntimeException ex, WebRequest request) {
+    	ErrorMessage em = new ErrorMessage();
+    	em.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+    	em.setMessage(ex.getMessage());
+        return em;
+    }
+}
+``` 
+
+### 참조
+
+http://springboot.tistory.com/25#sample-application
+<br/>
+https://jdm.kr/blog/199
